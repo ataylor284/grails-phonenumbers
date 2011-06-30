@@ -1,0 +1,9 @@
+syntax: glob
+
+cobertura.ser
+grails-phonenumbers-*.zip
+plugin.xml
+stacktrace.log
+target
+web-app
+
