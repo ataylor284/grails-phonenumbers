@@ -17,7 +17,7 @@ grails.project.dependency.resolution = {
     }
 
     dependencies {
-        runtime('com.googlecode.libphonenumber:libphonenumber:3.6') {
+        runtime('com.googlecode.libphonenumber:libphonenumber:3.8') {
             transitive = false
         }
     }

@@ -13,7 +13,7 @@ of type String to validate them with libphonenumber.
 
     class MyDomain {
         String phoneNumber
-        constraints = {
+        static constraints = {
             phoneNumber(phoneNumber: true)
         }
     }
@@ -35,7 +35,7 @@ it can be enabled globally by adding
 
     class MyDomain {
         String phoneNumber
-        constraints = {
+        static constraints = {
             phoneNumber(phoneNumber: [strict: true])
         }
     }
@@ -50,7 +50,7 @@ two-character country codes.  To accept only US phone numbers, set
 
     class MyDomain {
         String phoneNumber
-        constraints = {
+        static constraints = {
             phoneNumberField(phoneNumber: [strict: true, allowedRegions: ['US']])
         }
     }
@@ -67,7 +67,7 @@ closure delegate will be the domain object being validated.  Example:
     class MyDomain {
         String country
         String phoneNumber
-        constraints = {
+        static constraints = {
             phoneNumber(phoneNumber: [strict: true, allowedRegions: { -> country }])
         }
     }
