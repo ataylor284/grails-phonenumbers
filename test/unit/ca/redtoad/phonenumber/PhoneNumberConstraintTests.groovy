@@ -2,7 +2,6 @@
 
 package ca.redtoad.phonenumber
 
-import org.codehaus.groovy.grails.commons.ConfigurationHolder
 import org.springframework.validation.BeanPropertyBindingResult
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.google.i18n.phonenumbers.NumberParseException
@@ -14,16 +13,17 @@ class PhoneNumberConstraintTests extends GroovyTestCase {
     def country
     def errors
     int dummyInt
+    def defaultRegion = 'US'
+    def allowedRegions = PhoneNumberUtil.instance.supportedRegions
+    def strict = false
 
     void setUp() {
         super.setUp()
 
-        ConfigurationHolder.config = new ConfigObject()
-
-        def phoneNumberUtil = PhoneNumberUtil.instance
         country = country
-        phonenumber = phoneNumberUtil.format(phoneNumberUtil.getExampleNumber('US'), PhoneNumberUtil.PhoneNumberFormat.NATIONAL)
+        phonenumber = PhoneNumberUtil.instance.format(PhoneNumberUtil.instance.getExampleNumber('US'), PhoneNumberUtil.PhoneNumberFormat.NATIONAL)
         constraint = new PhoneNumberConstraint()
+        constraint.phoneNumberService = this
         constraint.owningClass = this.class
         constraint.propertyName = 'phonenumber'
         errors = new BeanPropertyBindingResult(this, 'ObjToValidate')
@@ -135,9 +135,9 @@ class PhoneNumberConstraintTests extends GroovyTestCase {
     }
 
     void testProcessValidateOverrideDefaultAllowedRegions() {
-        ConfigurationHolder.config.grails.plugins.phonenumbers.defaultStrict = true
-        ConfigurationHolder.config.grails.plugins.phonenumbers.defaultRegion = 'CA'
-        ConfigurationHolder.config.grails.plugins.phonenumbers.defaultAllowedRegions = ['CA']
+        defaultRegion = 'CA'
+        allowedRegions = ['CA']
+        strict = true
         constraint.processValidate(this, phonenumber, errors)
 
         assert errors.errorCount == 1

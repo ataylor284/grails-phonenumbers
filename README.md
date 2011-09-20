@@ -73,6 +73,50 @@ closure delegate will be the domain object being validated.  Example:
     }
 
 
+Formatting Phone Numbers
+------------------------
+
+PhoneNumberService exposes a simple format method for reformatting
+phone number strings.  For Example:
+
+    class MyDomain {
+        def phoneNumberService
+
+        String phoneNumber
+
+        void setPhoneNumber(String val) {
+            phoneNumber = phoneNumberService?.format(val) ?: val
+        }
+    }
+
+
+Phone Number Geolocation 
+------------------------
+
+PhoneNumberService also provides a geolocation service that can
+determine the country and region from phone number strings.  For
+Example:
+
+    class MyDomain {
+        def phoneNumberService
+
+        String phoneNumber
+        String geoCountryName
+        String geoCountryCode
+        String geoDescription
+
+        void setPhoneNumber(String val) {
+            phoneNumber = phoneNumberService?.format(val) ?: val
+            def geolocationInfo = phoneNumberService?.geolocate(val)
+            if (geolocationInfo) {
+                geoCountryName = geolocationInfo?.country
+                geoCountryCode = Locale.availableLocales.find { it.displayCountry == geoCountryName }?.country
+                geoDescription = geolocationInfo?.description
+            }
+        }
+    }
+
+
 Using PhoneNumberUtil Directly
 ------------------------------
 
@@ -89,7 +133,6 @@ initialized by spring.
 TODO
 ----
 
-* Phone number formating
 * GSP tag for javascript AsYouTypeFormatter
 
 

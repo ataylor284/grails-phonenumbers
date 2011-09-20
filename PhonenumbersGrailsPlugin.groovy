@@ -4,7 +4,7 @@ import ca.redtoad.phonenumber.PhoneNumberConstraint
 
 class PhonenumbersGrailsPlugin {
 
-    def version = "0.2"
+    def version = "0.3"
 
     def grailsVersion = "1.3 > *"
 

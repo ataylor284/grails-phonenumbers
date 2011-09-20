@@ -2,7 +2,7 @@
 
 package ca.redtoad.phonenumber
 
-import org.codehaus.groovy.grails.commons.ConfigurationHolder
+import org.codehaus.groovy.grails.commons.ApplicationHolder
 import org.codehaus.groovy.grails.validation.AbstractConstraint
 import org.springframework.validation.Errors
 import com.google.i18n.phonenumbers.PhoneNumberUtil
@@ -12,6 +12,15 @@ class PhoneNumberConstraint extends AbstractConstraint {
 
     final static String PHONE_NUMBER_CONSTRAINT = 'phoneNumber'
     final static String DEFAULT_INVALID_PHONE_NUMBER_MESSAGE_CODE = 'default.invalid.phoneNumber.message'
+
+    def phoneNumberService
+
+    def getPhoneNumberService() {
+        if (!phoneNumberService) {
+            phoneNumberService = ApplicationHolder.application.mainContext.getBean('phoneNumberService')
+        }
+        phoneNumberService
+    }
 
     String getName() { PHONE_NUMBER_CONSTRAINT }
 
@@ -48,10 +57,9 @@ class PhoneNumberConstraint extends AbstractConstraint {
 
         def phoneNumberUtil = PhoneNumberUtil.instance
         def phoneNumberInstance
-        def defaultRegion = ConfigurationHolder.config.grails.plugins.phonenumbers.defaultRegion ?: 'US'
-        def allowedRegions = ConfigurationHolder.config.grails.plugins.phonenumbers.defaultAllowedRegions ?: phoneNumberUtil.supportedRegions
+        def allowedRegions = getPhoneNumberService().allowedRegions
         def allowedRegionsString = 'any supported region'
-        def strict = ConfigurationHolder.config.grails.plugins.phonenumbers.defaultStrict ?: false
+        def strict = getPhoneNumberService().strict
 
         if (constraintParameter instanceof Map) {
             if (constraintParameter.strict) {
@@ -64,7 +72,7 @@ class PhoneNumberConstraint extends AbstractConstraint {
         }
 
         try {
-            phoneNumberInstance = phoneNumberUtil.parse(propertyValue.toString(), defaultRegion)
+            phoneNumberInstance = phoneNumberUtil.parse(propertyValue.toString(), getPhoneNumberService().defaultRegion)
         } catch (NumberParseException e) {
             Object[] args = [constraintPropertyName, constraintOwningClass, propertyValue, e.errorType, e.toString()]
             rejectValue(target, errors, DEFAULT_INVALID_PHONE_NUMBER_MESSAGE_CODE, 
