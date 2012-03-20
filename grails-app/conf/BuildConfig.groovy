@@ -17,10 +17,10 @@ grails.project.dependency.resolution = {
     }
 
     dependencies {
-        runtime('com.googlecode.libphonenumber:libphonenumber:4.3') {
+        runtime('com.googlecode.libphonenumber:libphonenumber:4.6') {
             transitive = false
         }
-        runtime('com.googlecode.libphonenumber:geocoder:1.7') {
+        runtime('com.googlecode.libphonenumber:geocoder:1.9') {
             transitive = false
         }
     }
