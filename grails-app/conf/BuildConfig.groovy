@@ -17,12 +17,17 @@ grails.project.dependency.resolution = {
     }
 
     dependencies {
-        runtime('com.googlecode.libphonenumber:libphonenumber:4.7') {
+        runtime('com.googlecode.libphonenumber:libphonenumber:5.5') {
             transitive = false
         }
-        runtime('com.googlecode.libphonenumber:geocoder:1.9') {
+        runtime('com.googlecode.libphonenumber:geocoder:2.6') {
             transitive = false
         }
+    }
+
+    plugins {
+        compile ":codenarc:0.18.1"
+        compile ":code-coverage:1.2.6"
     }
 }
 
