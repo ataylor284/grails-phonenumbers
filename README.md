@@ -1,6 +1,8 @@
 Grails Phonenumbers Plugin
 ==========================
 
+[![Build Status](https://travis-ci.org/ataylor284/grails-phonenumbers.png?branch=master)](https://travis-ci.org/ataylor284/grails-phonenumbers)
+
 This plugin adds phone number validation to grails based on google's
 libphonenumber (http://code.google.com/p/libphonenumber/) project.
 
