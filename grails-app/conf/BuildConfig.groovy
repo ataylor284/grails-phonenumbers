@@ -17,7 +17,7 @@ grails.project.dependency.resolution = {
     }
 
     dependencies {
-        runtime('com.googlecode.libphonenumber:libphonenumber:5.5') {
+        runtime('com.googlecode.libphonenumber:libphonenumber:5.8') {
             transitive = false
         }
         runtime('com.googlecode.libphonenumber:geocoder:2.6') {
@@ -26,8 +26,15 @@ grails.project.dependency.resolution = {
     }
 
     plugins {
-        compile ":codenarc:0.18.1"
-        compile ":code-coverage:1.2.6"
+        test ":codenarc:0.18.1", {
+					export = false
+				}
+        test ":code-coverage:1.2.6", {
+					export = false
+				}
+				build ':release:2.2.1', ':rest-client-builder:1.0.3', {
+					export = false
+				}
     }
 }
 
