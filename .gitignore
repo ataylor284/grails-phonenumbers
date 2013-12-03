@@ -1,0 +1,7 @@
+.idea/
+grails-phonenumbers-*.zip
+grails-phonenumbers-*.zip.sha1
+*.iml
+target/
+cobertura.ser
+plugin.xml
