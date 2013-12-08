@@ -2,20 +2,19 @@
 
 package ca.redtoad.phonenumber
 
+import org.codehaus.groovy.grails.commons.DefaultGrailsApplication
+
 import com.google.i18n.phonenumbers.PhoneNumberUtil
-import org.codehaus.groovy.grails.commons.ConfigurationHolder
 
 class PhoneNumberServiceTests extends GroovyTestCase {
 
-    def service
+    private service = new PhoneNumberService()
 
-    void setUp() {
+    protected void setUp() {
         super.setUp()
 
-        service = new PhoneNumberService()
         service.phoneNumberUtil = PhoneNumberUtil.instance
-
-        ConfigurationHolder.config = new ConfigObject()
+        service.grailsApplication = new DefaultGrailsApplication()
     }
 
     void testFormatValid() {
@@ -33,7 +32,7 @@ class PhoneNumberServiceTests extends GroovyTestCase {
 
         assert formatted == 'xyz'
     }
-    
+
     void testGeolocateValid() {
         def phoneNumber = '2012345678'
 

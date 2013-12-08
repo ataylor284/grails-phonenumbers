@@ -5,26 +5,24 @@ import ca.redtoad.phonenumber.PhoneNumberConstraint
 class PhonenumbersGrailsPlugin {
 
     def version = "0.8"
-
     def grailsVersion = "1.3 > *"
-
-    def dependsOn = [:]
-
     def author = "Andrew Taylor"
     def authorEmail = "ataylor@redtoad.ca"
     def title = "Grails Phonenumbers Plugin"
-    def description = '''\\
-        |A grails plugin for using google's libphonenumber library to validate phonenumbers.
-    '''.stripMargin()
-
+    def description = "Adds support for using Google's libphonenumber library to validate phone numbers"
     def documentation = "https://github.com/ataylor284/grails-phonenumbers"
+
+    def license = "APACHE"
+    def issueManagement = [ system: "GITHUB", url: "https://github.com/ataylor284/grails-phonenumbers/issues" ]
+    def scm = [ url: "https://github.com/ataylor284/grails-phonenumbers" ]
 
     def doWithSpring = {
         ConstrainedProperty.registerNewConstraint(
             PhoneNumberConstraint.PHONE_NUMBER_CONSTRAINT,
-            PhoneNumberConstraint.class);
+            PhoneNumberConstraint)
 
-        def phoneNumberUtilBean = phoneNumberUtil(PhoneNumberUtil)
-        phoneNumberUtilBean.factoryMethod = 'getInstance'
+        phoneNumberUtil(PhoneNumberUtil) { bean ->
+            bean.factoryMethod = 'getInstance'
+        }
     }
 }
