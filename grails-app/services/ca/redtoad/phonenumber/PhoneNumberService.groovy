@@ -5,30 +5,30 @@ package ca.redtoad.phonenumber
 import com.google.i18n.phonenumbers.NumberParseException
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.google.i18n.phonenumbers.geocoding.PhoneNumberOfflineGeocoder
-import org.codehaus.groovy.grails.commons.ConfigurationHolder
- 
+
 class PhoneNumberService {
 
     static transactional = false
 
+    def grailsApplication
     def phoneNumberUtil
 
     String getDefaultRegion() {
-        ConfigurationHolder.config.grails.plugins.phonenumbers.defaultRegion ?: 'US'
+        grailsApplication.config.grails.plugins.phonenumbers.defaultRegion ?: 'US'
     }
 
     Collection getAllowedRegions() {
-        ConfigurationHolder.config.grails.plugins.phonenumbers.defaultAllowedRegions ?: phoneNumberUtil.supportedRegions
+        grailsApplication.config.grails.plugins.phonenumbers.defaultAllowedRegions ?: phoneNumberUtil.supportedRegions
     }
 
     boolean getStrict() {
-        ConfigurationHolder.config.grails.plugins.phonenumbers.defaultStrict ?: false
+        grailsApplication.config.grails.plugins.phonenumbers.defaultStrict ?: false
     }
 
     String format(String phoneNumber, region = null) {
         try {
             def phoneNumberInstance = phoneNumberUtil.parse(phoneNumber, region ?: defaultRegion)
-             phoneNumberUtil.format(phoneNumberInstance, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL)
+            phoneNumberUtil.format(phoneNumberInstance, PhoneNumberUtil.PhoneNumberFormat.INTERNATIONAL)
         } catch (NumberParseException e) {
             phoneNumber
         }

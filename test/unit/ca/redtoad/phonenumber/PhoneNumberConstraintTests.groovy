@@ -17,10 +17,9 @@ class PhoneNumberConstraintTests extends GroovyTestCase {
     def allowedRegions = PhoneNumberUtil.instance.supportedRegions
     def strict = false
 
-    void setUp() {
+    protected void setUp() {
         super.setUp()
 
-        country = country
         phonenumber = PhoneNumberUtil.instance.format(PhoneNumberUtil.instance.getExampleNumber('US'), PhoneNumberUtil.PhoneNumberFormat.NATIONAL)
         constraint = new PhoneNumberConstraint()
         constraint.phoneNumberService = this
@@ -30,11 +29,11 @@ class PhoneNumberConstraintTests extends GroovyTestCase {
     }
 
     void testSupports() {
-        assert constraint.supports(String) == true
-        assert constraint.supports(null) == false
-        assert constraint.supports(Integer) == false
-        assert constraint.supports(Long) == false
-        assert constraint.supports(Object) == false
+        assert constraint.supports(String)
+        assert !constraint.supports(null)
+        assert !constraint.supports(Integer)
+        assert !constraint.supports(Long)
+        assert !constraint.supports(Object)
     }
 
     void testResolveAllowedRegionsNull() {
