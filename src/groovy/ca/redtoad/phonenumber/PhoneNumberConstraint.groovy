@@ -2,7 +2,7 @@
 
 package ca.redtoad.phonenumber
 
-import org.codehaus.groovy.grails.commons.ApplicationHolder
+import grails.util.Holders
 import org.codehaus.groovy.grails.validation.AbstractConstraint
 import org.springframework.validation.Errors
 import com.google.i18n.phonenumbers.PhoneNumberUtil
@@ -17,7 +17,7 @@ class PhoneNumberConstraint extends AbstractConstraint {
 
     def getPhoneNumberService() {
         if (!phoneNumberService) {
-            phoneNumberService = ApplicationHolder.application.mainContext.getBean('phoneNumberService')
+            phoneNumberService = Holders.applicationContext.getBean('phoneNumberService')
         }
         phoneNumberService
     }

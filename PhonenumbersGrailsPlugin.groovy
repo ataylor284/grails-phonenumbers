@@ -4,8 +4,8 @@ import ca.redtoad.phonenumber.PhoneNumberConstraint
 
 class PhonenumbersGrailsPlugin {
 
-    def version = "0.8"
-    def grailsVersion = "1.3 > *"
+    def version = "0.9"
+    def grailsVersion = "2.0 > *"
     def author = "Andrew Taylor"
     def authorEmail = "ataylor@redtoad.ca"
     def title = "Grails Phonenumbers Plugin"
