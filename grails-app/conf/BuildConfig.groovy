@@ -12,22 +12,22 @@ grails.project.dependency.resolution = {
     }
 
     dependencies {
-        runtime('com.googlecode.libphonenumber:libphonenumber:6.0') {
+        runtime('com.googlecode.libphonenumber:libphonenumber:7.0.7') {
             excludes 'junit'
         }
-        runtime('com.googlecode.libphonenumber:geocoder:2.11') {
+        runtime('com.googlecode.libphonenumber:geocoder:2.23') {
             excludes 'junit', 'libphonenumber'
         }
     }
 
     plugins {
-        test ":codenarc:0.20", {
+        test ":codenarc:0.24", {
             export = false
         }
-        test ":code-coverage:1.2.7", {
+        test ":code-coverage:2.0.3-3", {
             export = false
         }
-        build ':release:2.2.1', ':rest-client-builder:1.0.3', {
+        build ':release:3.1.1', {
             export = false
         }
     }
