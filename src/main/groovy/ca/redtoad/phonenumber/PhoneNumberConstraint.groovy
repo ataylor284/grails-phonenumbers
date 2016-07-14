@@ -3,10 +3,12 @@
 package ca.redtoad.phonenumber
 
 import grails.util.Holders
-import org.codehaus.groovy.grails.validation.AbstractConstraint
+import grails.validation.AbstractConstraint
+
 import org.springframework.validation.Errors
-import com.google.i18n.phonenumbers.PhoneNumberUtil
+
 import com.google.i18n.phonenumbers.NumberParseException
+import com.google.i18n.phonenumbers.PhoneNumberUtil
 
 class PhoneNumberConstraint extends AbstractConstraint {
 
