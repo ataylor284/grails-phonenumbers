@@ -5,4 +5,5 @@ grails-phonenumbers-*.zip.sha1
 /target
 cobertura.ser
 plugin.xml
-/web-app
+/build/
+/.gradle/

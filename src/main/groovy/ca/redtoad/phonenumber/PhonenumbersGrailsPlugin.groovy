@@ -1,10 +1,13 @@
+package ca.redtoad.phonenumber
+
+import grails.plugins.*
+
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import org.codehaus.groovy.grails.validation.ConstrainedProperty
-import ca.redtoad.phonenumber.PhoneNumberConstraint
 
-class PhonenumbersGrailsPlugin {
+class PhonenumbersGrailsPlugin extends Plugin {
 
-    def version = "0.10"
+    def version = "0.11"
     def grailsVersion = "2.0 > *"
     def author = "Andrew Taylor"
     def authorEmail = "ataylor@redtoad.ca"

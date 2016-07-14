@@ -2,7 +2,7 @@
 
 package ca.redtoad.phonenumber
 
-import org.codehaus.groovy.grails.commons.DefaultGrailsApplication
+import grails.core.DefaultGrailsApplication
 
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 
