@@ -1,10 +1,13 @@
+package ca.redtoad.phonenumber
+
+import grails.plugins.*
+import grails.validation.ConstrainedProperty
+
 import com.google.i18n.phonenumbers.PhoneNumberUtil
-import org.codehaus.groovy.grails.validation.ConstrainedProperty
-import ca.redtoad.phonenumber.PhoneNumberConstraint
 
-class PhonenumbersGrailsPlugin {
+class PhonenumbersGrailsPlugin extends Plugin {
 
-    def version = "0.10"
+    def version = "0.11"
     def grailsVersion = "2.0 > *"
     def author = "Andrew Taylor"
     def authorEmail = "ataylor@redtoad.ca"
@@ -16,7 +19,7 @@ class PhonenumbersGrailsPlugin {
     def issueManagement = [ system: "GITHUB", url: "https://github.com/ataylor284/grails-phonenumbers/issues" ]
     def scm = [ url: "https://github.com/ataylor284/grails-phonenumbers" ]
 
-    def doWithSpring = {
+    Closure doWithSpring() {{->
         ConstrainedProperty.registerNewConstraint(
             PhoneNumberConstraint.PHONE_NUMBER_CONSTRAINT,
             PhoneNumberConstraint)
@@ -24,5 +27,5 @@ class PhonenumbersGrailsPlugin {
         phoneNumberUtil(PhoneNumberUtil) { bean ->
             bean.factoryMethod = 'getInstance'
         }
-    }
+    }}
 }
