@@ -10,9 +10,7 @@ class PhoneNumberConstraintTests extends GroovyTestCase {
 
     def constraint
     def phonenumber
-    def country
     def errors
-    int dummyInt
     def defaultRegion = 'US'
     def allowedRegions = PhoneNumberUtil.instance.supportedRegions
     def strict = false
