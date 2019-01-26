@@ -2,19 +2,16 @@
 
 package ca.redtoad.phonenumber
 
-import grails.core.DefaultGrailsApplication
-
 import com.google.i18n.phonenumbers.PhoneNumberUtil
+import grails.test.mixin.TestFor
 
+@TestFor(PhoneNumberService)
 class PhoneNumberServiceTests extends GroovyTestCase {
-
-    private service = new PhoneNumberService()
 
     protected void setUp() {
         super.setUp()
 
         service.phoneNumberUtil = PhoneNumberUtil.instance
-        service.grailsApplication = new DefaultGrailsApplication()
     }
 
     void testFormatValid() {
