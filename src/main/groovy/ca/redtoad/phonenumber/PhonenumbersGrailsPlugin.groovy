@@ -8,7 +8,7 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil
 class PhonenumbersGrailsPlugin extends Plugin {
 
     def version = "0.11"
-    def grailsVersion = "2.0 > *"
+    def grailsVersion = "3.1.9 > *"
     def author = "Andrew Taylor"
     def authorEmail = "ataylor@redtoad.ca"
     def title = "Grails Phonenumbers Plugin"
